@@ -1,0 +1,104 @@
+import random
+import time
+import re
+
+def main_menu():
+    time.sleep(1)
+    print("\nMAIN MENU")
+    print("1. String Operation")
+    print("2. Number Operation")
+    print("3. EXIT")
+
+def string_operation_menu():
+    print("\nSTRING OPERATION MENU")
+    print("1. Email Validation")
+    print("2. Random Number Generator (Write to File)")
+    print("3. Pyramid")
+    print("4. Back to Main Menu")
+
+def number_operation_menu():
+    print("\nNUMBER OPERATION MENU")
+    print("1. Reverse Number")
+    print("2. Fibonacci Series")
+    print("3. Factorial of a Number")
+    print("4. Even Number Set")
+    print("5. Greatest Number Between Three")
+    print("6. Generate 100 Random Numbers (Write to File)")
+    print("7. Back to Main Menu")
+
+def main():
+    while True:
+        main_menu()
+        choice = input('\nEnter choice (1, 2 or 3): ').strip()
+        if choice == '1':
+            string_operations()
+        elif choice == '2':
+            number_operations()
+        elif choice == '3':
+            print('Thanks for using the program!')
+            break
+        else:
+            print('Invalid input! Please try again.')
+
+def string_operations():
+    while True:
+        string_operation_menu()
+        rchoice = input('Enter choice (1-4): ').strip()
+        if rchoice == '1':
+            email = input("Enter an email address: ")
+            if fnEmailValidation(email):
+                print(f"Provided email address [{email}] is valid")
+            else:
+                print(f"Provided email address [{email}] is not valid")
+        elif rchoice == '2':
+            filename = "outputFile.txt"
+            write_lines_to_file(filename)
+        elif rchoice == '3':
+            n = int(input("Enter the number of rows for the pyramid: "))
+            createPyramid(n)
+        elif rchoice == '4':
+            break
+        else:
+            print('Invalid input! Please try again.')
+
+def number_operations():
+    while True:
+        number_operation_menu()
+        echoice = input('Enter choice (1-7): ').strip()
+        if echoice == '1':
+            fnReverseNumber()
+        elif echoice == '2':
+            fibo()
+        elif echoice == '3':
+            n = int(input("Enter a number: "))
+            print(f"Factorial of {n} is {fnFactorial(n)}")
+        elif echoice == '4':
+            fnEvenNumberSet()
+        elif echoice == '5':
+            x = int(input("Enter the first number: "))
+            y = int(input("Enter the second number: "))
+            z = int(input("Enter the third number: "))
+            print(f"Greatest number between {x}, {y}, and {z} is {max_of_three(x, y, z)}")
+        elif echoice == '6':
+            fnRandomNumberGenerator()
+        elif echoice == '7':
+            break
+        else:
+            print('Invalid input! Please try again.')
+
+def write_lines_to_file(filename):
+    lines = []
+    print("Enter multiple lines of text (type 'DONE' on a new line to finish):")
+    while True:
+        line = input()
+        if line.strip().upper() == "DONE":
+            break
+        lines.append(line)
+    with open(filename, "w") as file:
+        file.write("\n".join(lines))
+    print(f"File [{filename}] has been saved successfully!")
+
+def fnEvenNumberSet():
+    n = int(input("Enter a number to set range: "))
+    print("Even numbers from 1 to", n, ":")
+    for i in range(2, n + 1,
